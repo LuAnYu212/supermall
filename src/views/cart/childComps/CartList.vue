@@ -24,7 +24,7 @@ export default {
   },
   created () {
     this.cartList = this.$store.state.cartList
-    console.log(this.cartList);
+    // console.log(this.cartList);
   },
   activated () {
     this.$refs.scroll.scroll.refresh()

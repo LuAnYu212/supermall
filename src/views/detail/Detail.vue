@@ -30,6 +30,10 @@
     </scroll>
     <back-top @click.native="backClick" v-show="isShowBackUp"></back-top>
     <detail-bottom-bar @addCart="addToCart"></detail-bottom-bar>
+
+    <toast message="hhhhhhhhhhhhhh">
+
+    </toast>
   </div>
 </template>
 
@@ -46,6 +50,7 @@ import BackTop from "components/content/backTop/BackTop";
 
 import Scroll from "components/common/scroll/Scroll";
 import GoodsList from "components/content/goods/GoodsList";
+import Toast from 'components/common/toast/Toast'
 
 import {
   getDetail,
@@ -85,6 +90,7 @@ export default {
 
     Scroll,
     GoodsList,
+    Toast
   },
   created() {
     this.iid = this.$route.params.iid;
@@ -197,7 +203,9 @@ export default {
       // 将商品添加到购物车
       // this.$store.cartList.push(product)
       // this.$store.commit('addCart', product)
-      this.$store.dispatch('addCart', product)
+      this.$store.dispatch('addCart', product).then(res => {
+        console.log(res);
+      })
     }
   },
 };
