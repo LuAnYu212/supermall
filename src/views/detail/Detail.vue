@@ -31,9 +31,7 @@
     <back-top @click.native="backClick" v-show="isShowBackUp"></back-top>
     <detail-bottom-bar @addCart="addToCart"></detail-bottom-bar>
 
-    <toast message="hhhhhhhhhhhhhh">
-
-    </toast>
+    <!-- <toast :message="message" :isshow="show"> </toast> -->
   </div>
 </template>
 
@@ -50,7 +48,7 @@ import BackTop from "components/content/backTop/BackTop";
 
 import Scroll from "components/common/scroll/Scroll";
 import GoodsList from "components/content/goods/GoodsList";
-import Toast from 'components/common/toast/Toast'
+// import Toast from "components/common/toast/Toast";
 
 import {
   getDetail,
@@ -75,6 +73,8 @@ export default {
       themeTopYs: [],
       currentIndex: 0,
       isShowBackUp: false,
+      // message: "",
+      // show: false,
     };
   },
   components: {
@@ -90,7 +90,7 @@ export default {
 
     Scroll,
     GoodsList,
-    Toast
+    // Toast,
   },
   created() {
     this.iid = this.$route.params.iid;
@@ -192,21 +192,29 @@ export default {
     addToCart() {
       // console.log(1);
       // 获取购物车要展示的信息
-      const product = {}
-      product.image = this.topImages[0]
-      product.title = this.goods.titile
-      product.desc = this.goods.desc
-      product.price = this.goods.realPrice
-      product.iid = this.iid
+      const product = {};
+      product.image = this.topImages[0];
+      product.title = this.goods.titile;
+      product.desc = this.goods.desc;
+      product.price = this.goods.realPrice;
+      product.iid = this.iid;
       // console.log(product);
 
       // 将商品添加到购物车
       // this.$store.cartList.push(product)
       // this.$store.commit('addCart', product)
-      this.$store.dispatch('addCart', product).then(res => {
-        console.log(res);
-      })
-    }
+      this.$store.dispatch("addCart", product).then((res) => {
+        // console.log(res);
+        // this.show = true;
+        // this.message = res;
+
+        // setTimeout(() => {
+        //   this.show = false;
+        //   this.message = "";
+        // }, 1000);
+        this.$toast.show(res, 2000)
+      });
+    },
   },
 };
 </script>
